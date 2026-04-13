@@ -1,0 +1,1170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Claire Lu. Portfolio</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Mono:wght@300;400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #F5F3EF;
+    --ink: #1A1917;
+    --ink-2: #4A4845;
+    --ink-3: #8C8A87;
+    --accent: #1D4E89;
+    --accent-light: #E8EFF7;
+    --teal: #0F6E56;
+    --teal-light: #E1F5EE;
+    --amber: #854F0B;
+    --amber-light: #FAEEDA;
+    --rule: rgba(26,25,23,0.12);
+    --card-bg: #FFFFFF;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 300;
+    line-height: 1.6;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 200;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 1.25rem 3rem;
+    background: rgba(245,243,239,0.94);
+    backdrop-filter: blur(14px);
+    border-bottom: 0.5px solid var(--rule);
+  }
+  .nav-brand {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.1rem; font-weight: 400; letter-spacing: 0.04em;
+    color: var(--ink); text-decoration: none;
+  }
+  .nav-links { display: flex; gap: 2rem; }
+  .nav-links a {
+    font-size: 0.75rem; letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--ink-3); text-decoration: none; transition: color 0.2s;
+    padding-bottom: 2px;
+  }
+  .nav-links a:hover { color: var(--ink); }
+  .nav-links a.active { color: var(--ink); border-bottom: 1px solid var(--ink); }
+
+  /* ── ANIMATIONS ── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(18px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  .fade { animation: fadeUp 0.6s ease both; }
+  .fade-1 { animation-delay: 0.05s; }
+  .fade-2 { animation-delay: 0.15s; }
+  .fade-3 { animation-delay: 0.25s; }
+
+  /* ── SHARED ── */
+  .wrap { max-width: 1100px; margin: 0 auto; padding: 0 3rem; }
+  .full-rule { max-width: 1100px; margin: 0 auto; border: none; border-top: 0.5px solid var(--rule); }
+  .section { max-width: 1100px; margin: 0 auto; padding: 5rem 3rem; }
+  .section-header { display: flex; align-items: baseline; gap: 1.5rem; margin-bottom: 3rem; }
+  .section-num { font-family: 'DM Mono', monospace; font-size: 0.7rem; color: var(--ink-3); letter-spacing: 0.1em; }
+  .section-title { font-family: 'Cormorant Garamond', serif; font-size: 1.85rem; font-weight: 400; letter-spacing: -0.01em; }
+  .col-label {
+    font-family: 'DM Mono', monospace; font-size: 0.63rem;
+    letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--ink-3); margin-bottom: 1.25rem;
+  }
+
+  /* ══════════════════════════════
+     SECTION 0. HERO / ABOUT ME
+  ══════════════════════════════ */
+  .hero {
+    padding: 8rem 3rem 4rem;
+    max-width: 1100px; margin: 0 auto;
+  }
+  .hero-right {}
+  .hero-eyebrow {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.68rem; letter-spacing: 0.14em; text-transform: uppercase;
+    color: var(--ink-3); margin-bottom: 1rem;
+  }
+  .hero-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 3.8rem; font-weight: 300; line-height: 1.0; letter-spacing: -0.02em;
+    margin-bottom: 0.5rem;
+  }
+  .hero-name em { font-style: italic; color: var(--accent); }
+  .hero-title {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.7rem; letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--ink-3); margin-bottom: 2rem;
+  }
+  .hero-bio {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.15rem; font-weight: 300; font-style: italic;
+    color: var(--ink-2); line-height: 1.75; max-width: 520px;
+    margin-bottom: 2rem;
+  }
+  .hero-tagline {
+    font-size: 0.85rem; color: var(--ink-2); line-height: 1.9;
+    max-width: 500px; margin-bottom: 2rem;
+  }
+  .contact-row { display: flex; gap: 1.5rem; flex-wrap: wrap; margin-bottom: 2rem; }
+  .contact-pill {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.65rem; letter-spacing: 0.08em;
+    color: var(--ink-3); display: flex; align-items: center; gap: 0.4rem;
+  }
+  .contact-dot { width: 4px; height: 4px; border-radius: 50%; background: var(--ink-3); }
+
+  /* interests strip */
+  .interests-strip {
+    display: flex; gap: 0; border: 0.5px solid var(--rule);
+    border-radius: 2px; overflow: hidden; background: var(--card-bg);
+    max-width: 520px;
+  }
+  .interest-cell {
+    flex: 1; padding: 0.9rem 1.1rem;
+    border-right: 0.5px solid var(--rule);
+  }
+  .interest-cell:last-child { border-right: none; }
+  .interest-icon { font-size: 1.1rem; margin-bottom: 0.2rem; }
+  .interest-name { font-size: 0.72rem; font-weight: 500; color: var(--ink); }
+  .interest-note { font-size: 0.65rem; color: var(--ink-3); line-height: 1.4; }
+
+  /* ══════════════════════════════
+     SECTION 1. METRICS STRIP
+  ══════════════════════════════ */
+  .metrics-strip {
+    max-width: 1100px; margin: 0 auto;
+    display: grid; grid-template-columns: repeat(4, 1fr);
+    border-top: 0.5px solid var(--rule);
+    border-bottom: 0.5px solid var(--rule);
+  }
+  .metric-cell {
+    padding: 2.25rem 2.5rem;
+    border-right: 0.5px solid var(--rule);
+  }
+  .metric-cell:last-child { border-right: none; }
+  .metric-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2.8rem; font-weight: 300; line-height: 1;
+    color: var(--ink); margin-bottom: 0.3rem;
+  }
+  .metric-num sup { font-size: 1.1rem; vertical-align: super; }
+  .metric-label { font-size: 0.75rem; color: var(--ink-3); line-height: 1.5; }
+  .metric-sub { font-family: 'DM Mono', monospace; font-size: 0.65rem; color: var(--ink-3); margin-top: 0.3rem; letter-spacing: 0.06em; }
+
+  /* ══════════════════════════════
+     SECTION 2. PROJECT HERO
+  ══════════════════════════════ */
+  .project-hero-band {
+    background: var(--ink); color: #F5F3EF;
+    padding: 4rem 3rem;
+  }
+  .project-hero-inner { max-width: 1100px; margin: 0 auto; }
+  .project-hero-kicker {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.63rem; letter-spacing: 0.14em; text-transform: uppercase;
+    color: rgba(245,243,239,0.4); margin-bottom: 1rem;
+  }
+  .project-hero-grid { display: grid; grid-template-columns: 1fr auto; gap: 3rem; align-items: start; }
+  .project-hero-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2.8rem; font-weight: 300; line-height: 1.1; margin-bottom: 0.75rem;
+    color: #F5F3EF;
+  }
+  .project-hero-title em { font-style: italic; color: rgba(245,243,239,0.55); }
+  .project-hero-desc { font-size: 0.87rem; color: rgba(245,243,239,0.6); line-height: 1.8; max-width: 520px; }
+  .badge-col { display: flex; flex-direction: column; gap: 0.5rem; align-items: flex-end; padding-top: 0.5rem; }
+  .badge {
+    font-family: 'DM Mono', monospace; font-size: 0.6rem; letter-spacing: 0.08em;
+    padding: 4px 12px; border-radius: 2px; white-space: nowrap;
+  }
+  .badge-blue  { background: var(--accent-light); color: var(--accent); }
+  .badge-teal  { background: var(--teal-light);   color: var(--teal); }
+  .badge-amber { background: var(--amber-light);  color: var(--amber); }
+
+  /* ══════════════════════════════
+     SECTION 3. SPECS COMPARISON
+  ══════════════════════════════ */
+  .specs-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 0;
+    background: var(--rule);
+    border: 0.5px solid var(--rule); border-radius: 2px; overflow: hidden;
+  }
+  .spec-card { background: var(--card-bg); padding: 2rem 2.25rem; }
+  .spec-card-header {
+    display: flex; align-items: center; justify-content: space-between;
+    margin-bottom: 1.5rem; padding-bottom: 1rem;
+    border-bottom: 0.5px solid var(--rule);
+  }
+  .spec-card-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.1rem; font-weight: 400;
+  }
+  .spec-card-mode {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.58rem; letter-spacing: 0.1em; text-transform: uppercase;
+    padding: 3px 8px; border-radius: 2px;
+  }
+  .mode-center { background: var(--accent-light); color: var(--accent); }
+  .mode-sensor { background: var(--teal-light); color: var(--teal); }
+  .mode-cloud  { background: var(--amber-light); color: var(--amber); }
+
+  .spec-row { display: flex; justify-content: space-between; align-items: flex-start; padding: 0.5rem 0; border-bottom: 0.5px solid var(--rule); gap: 0.5rem; }
+  .spec-row:last-child { border-bottom: none; }
+  .spec-key { font-size: 0.68rem; color: var(--ink-3); white-space: nowrap; padding-top: 1px; flex-shrink: 0; width: 36%; }
+  .spec-val { font-size: 0.75rem; color: var(--ink); text-align: right; line-height: 1.5; }
+  .spec-val strong { color: var(--accent); font-weight: 400; }
+
+  .shared-note {
+    background: var(--bg);
+    border: 0.5px solid var(--rule);
+    border-radius: 2px;
+    padding: 1.25rem 1.75rem;
+    margin-top: 1.25rem;
+    display: flex; align-items: flex-start; gap: 1rem;
+  }
+  .shared-note-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.6rem; letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--teal); white-space: nowrap; padding-top: 1px;
+  }
+  .shared-note-text { font-size: 0.8rem; color: var(--ink-2); line-height: 1.6; }
+
+  /* ══════════════════════════════
+     SECTION 4. PRODUCT LIFECYCLE
+  ══════════════════════════════ */
+  .lifecycle-wrap { overflow-x: auto; }
+  .lifecycle {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 0; min-width: 700px;
+    border: 0.5px solid var(--rule); border-radius: 2px; overflow: hidden;
+  }
+  .lc-phase {
+    background: var(--card-bg);
+    border-right: 0.5px solid var(--rule);
+    display: flex; flex-direction: column;
+  }
+  .lc-phase:last-child { border-right: none; }
+  .lc-header {
+    padding: 1rem 1.25rem 0.75rem;
+    border-bottom: 0.5px solid var(--rule);
+  }
+  .lc-tag {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.55rem; letter-spacing: 0.1em; text-transform: uppercase;
+    padding: 2px 7px; border-radius: 2px; margin-bottom: 0.4rem;
+    display: inline-block;
+  }
+  .lc-phase-name { font-size: 0.85rem; font-weight: 500; color: var(--ink); line-height: 1.2; }
+  .lc-body { padding: 1rem 1.25rem; flex: 1; }
+  .lc-task {
+    font-size: 0.72rem; color: var(--ink-2); line-height: 1.6;
+    padding: 0.3rem 0; border-bottom: 0.5px solid var(--rule); display: flex; gap: 0.5rem;
+  }
+  .lc-task:last-child { border-bottom: none; }
+  .lc-dot { width: 4px; height: 4px; border-radius: 50%; background: var(--ink-3); flex-shrink: 0; margin-top: 0.45rem; }
+  .lc-pm { background: var(--accent-light); }
+  .lc-pm .lc-tag { background: var(--accent); color: #fff; }
+  .lc-pm .lc-phase-name { color: var(--accent); }
+
+  /* PM vs Team legend */
+  .lc-legend { display: flex; gap: 1.5rem; margin-bottom: 1.25rem; }
+  .lc-legend-item { display: flex; align-items: center; gap: 0.5rem; font-size: 0.72rem; color: var(--ink-3); }
+  .lc-legend-dot { width: 8px; height: 8px; border-radius: 1px; }
+
+  /* ══════════════════════════════
+     SECTION 5. ROLE DEEP DIVE
+  ══════════════════════════════ */
+  .role-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: var(--rule); border: 0.5px solid var(--rule); border-radius: 2px; overflow: hidden; }
+  .role-card { background: var(--card-bg); padding: 2rem 2.25rem; }
+  .role-card-phase {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.6rem; letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--teal); margin-bottom: 0.4rem;
+  }
+  .role-card-title { font-family: 'Cormorant Garamond', serif; font-size: 1.2rem; font-weight: 400; margin-bottom: 0.6rem; }
+  .role-card-desc { font-size: 0.8rem; color: var(--ink-2); line-height: 1.75; margin-bottom: 1rem; }
+  .tag-row { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+  .tag { font-size: 0.68rem; padding: 3px 10px; border-radius: 20px; white-space: nowrap; }
+  .tag-teal  { background: var(--teal-light);   color: var(--teal); }
+  .tag-blue  { background: var(--accent-light);  color: var(--accent); }
+  .tag-amber { background: var(--amber-light);  color: var(--amber); }
+  .tag-plain { border: 0.5px solid var(--rule); color: var(--ink-2); background: transparent; }
+
+  /* ══════════════════════════════
+     SECTION 6. MINI PROJECT CARDS
+  ══════════════════════════════ */
+  .mini-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
+  .mini-card {
+    background: var(--card-bg);
+    border: 0.5px solid var(--rule); border-radius: 2px; padding: 1.75rem;
+  }
+  .mini-kicker { font-family: 'DM Mono', monospace; font-size: 0.6rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-3); margin-bottom: 0.4rem; }
+  .mini-name { font-family: 'Cormorant Garamond', serif; font-size: 1.15rem; font-weight: 400; margin-bottom: 0.5rem; }
+  .mini-desc { font-size: 0.78rem; color: var(--ink-2); line-height: 1.7; margin-bottom: 1rem; }
+  .mini-rule { border: none; border-top: 0.5px solid var(--rule); margin: 0.75rem 0; }
+  .mini-focus-label { font-size: 0.65rem; font-family: 'DM Mono', monospace; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink-3); margin-bottom: 0.4rem; }
+  .mini-focus-text { font-size: 0.75rem; color: var(--ink-2); line-height: 1.6; }
+
+  /* ══════════════════════════════
+     SECTION 7. INTERVIEW PANEL
+  ══════════════════════════════ */
+  .interview-panel {
+    background: var(--ink); color: #F5F3EF;
+    border-radius: 2px; padding: 3rem;
+  }
+  .interview-panel .col-label { color: rgba(245,243,239,0.35); margin-bottom: 2rem; }
+  .interview-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; }
+  .interview-item { border-left: 1px solid rgba(245,243,239,0.12); padding-left: 1.5rem; }
+  .interview-q {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1rem; font-weight: 400; font-style: italic;
+    color: rgba(245,243,239,0.85); margin-bottom: 0.6rem; line-height: 1.4;
+  }
+  .interview-a { font-size: 0.78rem; color: rgba(245,243,239,0.5); line-height: 1.75; }
+  .interview-a strong { color: rgba(245,243,239,0.82); font-weight: 400; }
+
+  /* ══════════════════════════════
+     EDUCATION STRIP
+  ══════════════════════════════ */
+  .edu-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+  .edu-card { background: var(--card-bg); border: 0.5px solid var(--rule); border-radius: 2px; padding: 2rem; display: flex; gap: 1.25rem; align-items: flex-start; }
+  .edu-logo { width: 52px; height: 52px; object-fit: contain; flex-shrink: 0; }
+  .edu-logo-placeholder { width: 52px; height: 52px; border-radius: 50%; background: var(--accent-light); display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+  .edu-logo-placeholder span { font-family: 'DM Mono', monospace; font-size: 0.6rem; color: var(--accent); }
+  .edu-period { font-family: 'DM Mono', monospace; font-size: 0.6rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink-3); margin-bottom: 0.3rem; }
+  .edu-school { font-family: 'Cormorant Garamond', serif; font-size: 1.05rem; font-weight: 400; margin-bottom: 0.2rem; }
+  .edu-degree { font-size: 0.8rem; color: var(--ink-2); margin-bottom: 0.5rem; line-height: 1.4; }
+  .edu-note { font-size: 0.73rem; color: var(--ink-3); line-height: 1.6; }
+
+  /* ══════════════════════════════
+     FOOTER
+  ══════════════════════════════ */
+  footer {
+    max-width: 1100px; margin: 0 auto;
+    padding: 2.5rem 3rem;
+    display: flex; justify-content: space-between; align-items: center;
+    border-top: 0.5px solid var(--rule);
+  }
+  footer span { font-size: 0.72rem; color: var(--ink-3); letter-spacing: 0.04em; }
+  footer a { color: var(--ink-3); text-decoration: none; }
+  footer a:hover { color: var(--ink); }
+
+  /* ── MOBILE ── */
+  @media (max-width: 768px) {
+    nav { padding: 1rem 1.5rem; }
+    .nav-links a { font-size: 0.65rem; }
+    .hero { grid-template-columns: 1fr; padding: 7rem 1.5rem 3rem; gap: 2rem; }
+    .hero-photo { width: 140px; height: 180px; }
+    .hero-name { font-size: 2.8rem; }
+    .section { padding: 3.5rem 1.5rem; }
+    .metrics-strip { grid-template-columns: 1fr 1fr; }
+    .metric-cell:nth-child(3), .metric-cell:nth-child(4) { border-top: 0.5px solid var(--rule); }
+    .metric-cell:nth-child(2), .metric-cell:nth-child(4) { border-right: none; }
+    .project-hero-band { padding: 2.5rem 1.5rem; }
+    .project-hero-grid { grid-template-columns: 1fr; }
+    .badge-col { align-items: flex-start; flex-direction: row; flex-wrap: wrap; }
+    .specs-grid { grid-template-columns: 1fr; }
+    .role-grid { grid-template-columns: 1fr; }
+    .mini-grid { grid-template-columns: 1fr; }
+    .interview-grid { grid-template-columns: 1fr; }
+    .edu-grid { grid-template-columns: 1fr; }
+    .interests-strip { flex-wrap: wrap; }
+    .interest-cell { min-width: 120px; }
+    footer { flex-direction: column; gap: 0.5rem; text-align: center; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ── NAV ── -->
+<nav>
+  <a href="#" class="nav-brand">Yu Chen (Claire) Lu</a>
+  <div class="nav-links">
+    <a href="#about" class="active">Profile</a>
+    <a href="#project">Project</a>
+    <a href="#lifecycle">Lifecycle</a>
+    <a href="#challenge">Challenge</a>
+  </div>
+</nav>
+
+
+<!-- ══════════════════════════════════
+     HERO. ABOUT ME
+══════════════════════════════════ -->
+<div class="hero fade" id="about">
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:start;">
+  <div class="fade fade-1">
+    <p class="hero-eyebrow">Profile · Amsterdam, NL</p>
+    <h1 class="hero-name">Yu Chen<br><em>Claire</em> Lu</h1>
+    <p class="hero-title">Project Manager &amp; MSc Business Administration</p>
+    <p class="hero-bio">"When I'm not managing projects or studying marketing, I'm probably in the kitchen experimenting, biking through canals, or taking selfies."</p>
+  </div>
+  <div class="hero-right fade fade-2">
+    <p class="hero-tagline">
+      Two years leading AI server ODM programs from kickoff through mass production at AEWIN Technology. Now researching how AI interface design shapes user perception at the University of Amsterdam.
+    </p>
+    <div class="contact-row">
+      <span class="contact-pill"><span class="contact-dot"></span>Amsterdam, NL</span>
+      <span class="contact-pill"><span class="contact-dot"></span><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="b5d6d9d4dcc7d0ccd6d9c6d4848c858df5d2d8d4dcd99bd6dad8">[email&#160;protected]</a></span>
+      <span class="contact-pill"><span class="contact-dot"></span><a href="https://www.linkedin.com/in/claire-lu-aa5481232" target="_blank" style="color:inherit;text-decoration:none;">LinkedIn</a></span>
+      <span class="contact-pill"><span class="contact-dot"></span><a href="https://www.instagram.com/clariiyu" target="_blank" style="color:inherit;text-decoration:none;">@clariiyu</a></span>
+    </div>
+    <div class="interests-strip">
+      <div class="interest-cell">
+        <div class="interest-icon">🍳</div>
+        <div class="interest-name">Cooking</div>
+        <div class="interest-note">Tacos to homemade sushi</div>
+      </div>
+      <div class="interest-cell">
+        <div class="interest-icon">🎨</div>
+        <div class="interest-name">Van Gogh</div>
+        <div class="interest-note">Painted "The Bedroom"</div>
+      </div>
+      <div class="interest-cell">
+        <div class="interest-icon">🚲</div>
+        <div class="interest-name">Cycling</div>
+        <div class="interest-note">Through Amsterdam canals</div>
+      </div>
+      <div class="interest-cell">
+        <div class="interest-icon">✈️</div>
+        <div class="interest-name">Travel</div>
+        <div class="interest-note">Curious &amp; open-minded</div>
+      </div>
+    </div>
+  </div>
+  </div>
+</div>
+
+<hr class="full-rule">
+
+<!-- METRICS -->
+<div class="metrics-strip fade fade-2">
+  <div class="metric-cell">
+    <div class="metric-num">2<sup>yr</sup></div>
+    <div class="metric-label">Hardware PM experience</div>
+    <div class="metric-sub">AEWIN · Jul 2023–Jul 2025</div>
+  </div>
+  <div class="metric-cell">
+    <div class="metric-num">5+</div>
+    <div class="metric-label">Cross-functional teams per program</div>
+    <div class="metric-sub">R&amp;D · DQA · Mfg · Logistics · Sales</div>
+  </div>
+  <div class="metric-cell">
+    <div class="metric-num">NPI<br style="line-height:0.55">→MP</div>
+    <div class="metric-label">Full product lifecycle ownership</div>
+    <div class="metric-sub">Kickoff · EVT · DVT · PVT · MP</div>
+  </div>
+  <div class="metric-cell">
+    <div class="metric-num">L9</div>
+    <div class="metric-label">AI server platform complexity tier</div>
+    <div class="metric-sub">AMD EPYC™ Genoa · Socket SP5</div>
+  </div>
+</div>
+
+<hr class="full-rule">
+
+<!-- ══════════════════════════════════
+     PROJECT HERO BAND
+══════════════════════════════════ -->
+<div class="project-hero-band" id="project">
+  <div class="project-hero-inner">
+    <p class="project-hero-kicker">AEWIN Technology · ODM Program · Jul 2023 – Jul 2025</p>
+    <div class="project-hero-grid">
+      <div>
+        <h2 class="project-hero-title">Fortinet FortiNDR Series<br><em>3600G · 2500G · Cloud 2540G</em></h2>
+        <p class="project-hero-desc">AI-powered network detection and response (NDR) appliances built on AMD EPYC™ 9554P Genoa platform. Designed for enterprise, government, and OT security environments requiring on-premises air-gapped deployment. All three models share the same motherboard; system-level specifications differ. Managed end-to-end from NPI through Mass Production.</p>
+      </div>
+      <div class="badge-col">
+        <span class="badge badge-blue">L9 AI Server</span>
+        <span class="badge badge-teal">AMD EPYC™ 9554P · Genoa SP5</span>
+        <span class="badge badge-amber">Fortinet ODM · 3 SKUs</span>
+        <span class="badge badge-blue">2× NVIDIA L4 GPU (3600G)</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════
+     SPEC COMPARISON
+══════════════════════════════════ -->
+<div class="section" style="padding-top: 3.5rem;">
+  <div class="section-header">
+    <span class="section-num">01</span>
+    <h2 class="section-title">System Specifications</h2>
+  </div>
+
+  <div class="specs-grid fade fade-1">
+
+    <!-- FortiNDR-3600G -->
+    <div class="spec-card">
+      <div class="spec-card-header">
+        <p class="spec-card-name">FortiNDR-3600G</p>
+        
+      </div>
+      <div class="spec-row"><span class="spec-key">Processor</span><span class="spec-val"><strong>AMD EPYC 9554P</strong> 64C/128T · 3.1GHz · 360W TDP</span></div>
+      <div class="spec-row"><span class="spec-key">Memory</span><span class="spec-val">384 GB DDR5 4800MT/s RDIMM (1DPC, 32GB×12)</span></div>
+      <div class="spec-row"><span class="spec-key">Boot Storage</span><span class="spec-val">1× M.2 NVMe 2280 · 1TB TLC</span></div>
+      <div class="spec-row"><span class="spec-key">RAID</span><span class="spec-val">MegaRAID 9560-16i + BBU</span></div>
+      <div class="spec-row"><span class="spec-key">Storage</span><span class="spec-val">12× 3.5" 16TB SAS SED HDD (ST16000NM005J)</span></div>
+      <div class="spec-row"><span class="spec-key">GPU</span><span class="spec-val"><strong>2× NVIDIA L4</strong></span></div>
+      <div class="spec-row"><span class="spec-key">Network I/O</span><span class="spec-val">4× 10GbE SFP+</span></div>
+      <div class="spec-row"><span class="spec-key">PSU</span><span class="spec-val">2× CRPS 1600W (redundant)</span></div>
+      <div class="spec-row"><span class="spec-key">BMC/IPMI</span><span class="spec-val">AST2600 BMC</span></div>
+      <div class="spec-row"><span class="spec-key">Sensors</span><span class="spec-val">Up to 50 (Center mode)</span></div>
+      <div class="spec-row"><span class="spec-key">Dimension</span><span class="spec-val">438 × 690 × 88 mm (2U)</span></div>
+    </div>
+
+    <!-- FortiNDR-2500G -->
+    <div class="spec-card">
+      <div class="spec-card-header">
+        <p class="spec-card-name">FortiNDR-2500G</p>
+        
+      </div>
+      <div class="spec-row"><span class="spec-key">Processor</span><span class="spec-val"><strong>AMD EPYC 9554P</strong> 64C/128T · 3.1GHz · 360W TDP</span></div>
+      <div class="spec-row"><span class="spec-key">Memory</span><span class="spec-val">384 GB DDR5 4800MT/s RDIMM (1DPC, 32GB×12)</span></div>
+      <div class="spec-row"><span class="spec-key">Boot Storage</span><span class="spec-val">1× M.2 NVMe 2280 · 128GB 3D TLC</span></div>
+      <div class="spec-row"><span class="spec-key">RAID</span><span class="spec-val">MegaRAID 9560-8i + BBU</span></div>
+      <div class="spec-row"><span class="spec-key">Storage</span><span class="spec-val">4× 2.5" 7.68TB Samsung NVMe SSD</span></div>
+      <div class="spec-row"><span class="spec-key">Network I/O</span><span class="spec-val">2× 10GbE SFP+ · 4× 25GbE SFP28 (sniffer)</span></div>
+      <div class="spec-row"><span class="spec-key">USB</span><span class="spec-val">2× external USB 3.0</span></div>
+      <div class="spec-row"><span class="spec-key">Console</span><span class="spec-val">1× RJ45 · 1× 1Gb/s RJ45 mgmt</span></div>
+      <div class="spec-row"><span class="spec-key">PSU</span><span class="spec-val">2× CRPS 1200W (redundant)</span></div>
+      <div class="spec-row"><span class="spec-key">BMC/IPMI</span><span class="spec-val">AST2600 BMC</span></div>
+      <div class="spec-row"><span class="spec-key">Dimension</span><span class="spec-val">438 × 690 × 88 mm (2U)</span></div>
+    </div>
+
+    <!-- FortiNDR Cloud 2540G -->
+    <div class="spec-card">
+      <div class="spec-card-header">
+        <p class="spec-card-name">FortiNDR Cloud 2540G</p>
+      </div>
+      <div class="spec-row"><span class="spec-key">Motherboard</span><span class="spec-val"><strong>Same PCB as 2500G</strong>. system-level config differs</span></div>
+      <div class="spec-row"><span class="spec-key">Processor</span><span class="spec-val"><strong>AMD EPYC 9554P</strong> 64C/128T · 3.1GHz · 360W TDP</span></div>
+      <div class="spec-row"><span class="spec-key">Memory</span><span class="spec-val">384 GB DDR5 4800MT/s RDIMM (1DPC, 32GB×12)</span></div>
+      <div class="spec-row"><span class="spec-key">Mgmt Network</span><span class="spec-val">1× 1GbE RJ45 (mgmt) · 2× 10GbE SFP+ · 2× 25GbE SFP28 · 1× Console (RJ45)</span></div>
+      <div class="spec-row"><span class="spec-key">Sniffer Ports</span><span class="spec-val">2× 10GbE SFP+ · 2× 25GbE SFP28 (breakout cable supported)</span></div>
+      <div class="spec-row"><span class="spec-key">Storage</span><span class="spec-val">3.84 TB (4× 960GB 2.5" NVMe SSD). purchased separately</span></div>
+      <div class="spec-row"><span class="spec-key">TPM</span><span class="spec-val">TPM 2.0 · Infineon SLB 9670VQ2.0</span></div>
+      <div class="spec-row"><span class="spec-key">BMC/IPMI</span><span class="spec-val">AST2600 BMC · 1× VGA</span></div>
+      <div class="spec-row"><span class="spec-key">Deployment</span><span class="spec-val">Extra-large sensor for FortiNDR Cloud (SaaS)</span></div>
+      <div class="spec-row"><span class="spec-key">SKU note</span><span class="spec-val">Shared board, different NIC card and storage vs 2500G. PM managed BOM delta</span></div>
+    </div>
+
+  </div>
+
+  <!-- Shared platform note -->
+  <div class="shared-note fade fade-2">
+    <span class="shared-note-label">Shared<br>Platform</span>
+    <p class="shared-note-text">All three models. FortiNDR-3600G, FortiNDR-2500G, and FortiNDR Cloud 2540G. share the same motherboard based on AMD EPYC™ 9554P (Genoa, Socket SP5). System-level differences (storage configuration, GPU presence, network I/O, PSU wattage, deployment mode) were tracked and managed through SKU-level BOM and spec delta documentation as part of the PM's scope.</p>
+  </div>
+</div>
+
+<hr class="full-rule">
+
+<!-- ══════════════════════════════════
+     PRODUCT LIFECYCLE VISUALIZATION
+══════════════════════════════════ -->
+<div class="section" id="lifecycle">
+  <div class="section-header">
+    <span class="section-num">02</span>
+    <h2 class="section-title">Product Development Process &amp; Flow</h2>
+  </div>
+
+  <!-- ── PROCESS DIAGRAM: Team swim-lane view ── -->
+  <div class="fade fade-1" style="margin-bottom:2.5rem;">
+    <p class="col-label" style="margin-bottom:1rem;">Development process: team responsibilities across phases</p>
+    <div style="overflow-x:auto;">
+    <div style="min-width:860px; border:0.5px solid var(--rule); border-radius:2px; overflow:hidden; background:var(--card-bg);">
+
+      <!-- Header row: weeks -->
+      <div style="display:grid; grid-template-columns:90px repeat(6,1fr); background:var(--ink); color:#F5F3EF;">
+        <div style="padding:0.6rem 0.75rem; font-family:'DM Mono',monospace; font-size:0.58rem; letter-spacing:0.1em; text-transform:uppercase; color:rgba(245,243,239,0.4); border-right:0.5px solid rgba(255,255,255,0.08);">Team</div>
+        <div style="padding:0.6rem 0.75rem; font-family:'DM Mono',monospace; font-size:0.6rem; letter-spacing:0.08em; text-align:center; border-right:0.5px solid rgba(255,255,255,0.08); color:rgba(245,243,239,0.5);">P1 Plan</div>
+        <div style="padding:0.6rem 0.75rem; font-family:'DM Mono',monospace; font-size:0.6rem; letter-spacing:0.08em; text-align:center; border-right:0.5px solid rgba(255,255,255,0.08); color:rgba(245,243,239,0.5);">P2 Design</div>
+        <div style="padding:0.6rem 0.75rem; font-family:'DM Mono',monospace; font-size:0.6rem; letter-spacing:0.08em; text-align:center; border-right:0.5px solid rgba(255,255,255,0.08); color:rgba(245,243,239,0.5);">P3 EVT</div>
+        <div style="padding:0.6rem 0.75rem; font-family:'DM Mono',monospace; font-size:0.6rem; letter-spacing:0.08em; text-align:center; border-right:0.5px solid rgba(255,255,255,0.08); color:rgba(245,243,239,0.5);">P4 DVT</div>
+        <div style="padding:0.6rem 0.75rem; font-family:'DM Mono',monospace; font-size:0.6rem; letter-spacing:0.08em; text-align:center; border-right:0.5px solid rgba(255,255,255,0.08); color:rgba(245,243,239,0.5);">P5 PVT</div>
+        <div style="padding:0.6rem 0.75rem; font-family:'DM Mono',monospace; font-size:0.6rem; letter-spacing:0.08em; text-align:center; color:rgba(245,243,239,0.5);">MP</div>
+      </div>
+
+      <!-- EE row -->
+      <div style="display:grid; grid-template-columns:90px repeat(6,1fr); border-top:0.5px solid var(--rule);">
+        <div style="padding:0.7rem 0.75rem; font-size:0.72rem; font-weight:500; color:var(--ink); border-right:0.5px solid var(--rule); background:var(--bg); display:flex; align-items:center;">EE</div>
+        <div style="padding:0.7rem 0.75rem; border-right:0.5px solid var(--rule); font-size:0.7rem; color:var(--ink-2);">Feasibility study</div>
+        <div style="padding:0.7rem 0.75rem; border-right:0.5px solid var(--rule);">
+          <div style="background:var(--teal-light); color:var(--teal); border-radius:2px; padding:2px 8px; font-size:0.65rem; font-family:'DM Mono',monospace; display:inline-block; margin-bottom:3px;">Schematics</div>
+          <div style="background:var(--teal-light); color:var(--teal); border-radius:2px; padding:2px 8px; font-size:0.65rem; font-family:'DM Mono',monospace; display:inline-block;">Layout</div>
+        </div>
+        <div style="padding:0.7rem 0.75rem; border-right:0.5px solid var(--rule);">
+          <div style="background:var(--teal-light); color:var(--teal); border-radius:2px; padding:2px 8px; font-size:0.65rem; font-family:'DM Mono',monospace; display:inline-block;">Bring-up</div>
+        </div>
+        <div style="padding:0.7rem 0.75rem; border-right:0.5px solid var(--rule);">
+          <div style="background:var(--teal-light); color:var(--teal); border-radius:2px; padding:2px 8px; font-size:0.65rem; font-family:'DM Mono',monospace; display:inline-block; margin-bottom:3px;">Bug fixing</div>
+          <div style="background:var(--teal-light); color:var(--teal); border-radius:2px; padding:2px 8px; font-size:0.65rem; font-family:'DM Mono',monospace; display:inline-block;">Sch/Layout update</div>
+        </div>
+        <div style="padding:0.7rem 0.75rem; border-right:0.5px solid var(--rule);"></div>
+        <div style="padding:0.7rem 0.75rem;"></div>
+      </div>
+
+      <!-- ME row -->
+      <div style="display:grid; grid-template-columns:90px repeat(6,1fr); border-top:0.5px solid var(--rule);">
+        <div style="padding:0.7rem 0.75rem; font-size:0.72rem; font-weight:500; color:var(--ink); border-right:0.5px solid var(--rule); background:var(--bg); display:flex; align-items:center;">ME</div>
+        <div style="padding:0.7rem 0.75rem; border-right:0.5px solid var(--rule); font-size:0.7rem; color:var(--ink-2);">Thermal simulation</div>
+        <div style="padding:0.7rem 0.75rem; border-right:0.5px solid var(--rule);">
+          <div style="background:var(--teal-light); color:var(--teal); border-radius:2px; padding:2px 8px; font-size:0.65rem; font-family:'DM Mono',monospace; display:inline-block; margin-bottom:3px;">DXF</div>
+          <div style="background:var(--teal-light); color:var(--teal); border-radius:2px; padding:2px 8px; font-size:0.65rem; font-family:'DM Mono',monospace; display:inline-block;">2D/3D drawing</div>
+        </div>
+        <div style="padding:0.7rem 0.75rem; border-right:0.5px solid var(--rule);">
+          <div style="background:var(--teal-light); color:var(--teal); border-radius:2px; padding:2px 8px; font-size:0.65rem; font-family:'DM Mono',monospace; display:inline-block;">1st sample</div>
+        </div>
+        <div style="padding:0.7rem 0.75rem; border-right:0.5px solid var(--rule);">
+          <div style="background:var(--teal-light); color:var(--teal); border-radius:2px; padding:2px 8px; font-size:0.65rem; font-family:'DM Mono',monospace; display:inline-block;">Packaging spec</div>
+        </div>
+        <div style="padding:0.7rem 0.75rem; border-right:0.5px solid var(--rule);"></div>
+        <div style="padding:0.7rem 0.75rem;"></div>
+      </div>
+
+      <!-- SW row -->
+      <div style="display:grid; grid-template-columns:90px repeat(6,1fr); border-top:0.5px solid var(--rule);">
+        <div style="padding:0.7rem 0.75rem; font-size:0.72rem; font-weight:500; color:var(--ink); border-right:0.5px solid var(--rule); background:var(--bg); display:flex; align-items:center;">SW / BIOS</div>
+        <div style="padding:0.7rem 0.75rem; border-right:0.5px solid var(--rule); font-size:0.7rem; color:var(--ink-2);">Regulatory review</div>
+        <div style="padding:0.7rem 0.75rem; border-right:0.5px solid var(--rule);">
+          <div style="background:var(--teal-light); color:var(--teal); border-radius:2px; padding:2px 8px; font-size:0.65rem; font-family:'DM Mono',monospace; display:inline-block; margin-bottom:3px;">Firmware</div>
+          <div style="background:var(--teal-light); color:var(--teal); border-radius:2px; padding:2px 8px; font-size:0.65rem; font-family:'DM Mono',monospace; display:inline-block;">Sample code</div>
+        </div>
+        <div style="padding:0.7rem 0.75rem; border-right:0.5px solid var(--rule);">
+          <div style="background:var(--teal-light); color:var(--teal); border-radius:2px; padding:2px 8px; font-size:0.65rem; font-family:'DM Mono',monospace; display:inline-block;">SE test</div>
+        </div>
+        <div style="padding:0.7rem 0.75rem; border-right:0.5px solid var(--rule);">
+          <div style="background:var(--teal-light); color:var(--teal); border-radius:2px; padding:2px 8px; font-size:0.65rem; font-family:'DM Mono',monospace; display:inline-block; margin-bottom:3px;">Software DQE</div>
+          <div style="background:var(--teal-light); color:var(--teal); border-radius:2px; padding:2px 8px; font-size:0.65rem; font-family:'DM Mono',monospace; display:inline-block;">Certification</div>
+        </div>
+        <div style="padding:0.7rem 0.75rem; border-right:0.5px solid var(--rule);"></div>
+        <div style="padding:0.7rem 0.75rem; font-size:0.65rem; color:var(--ink-3);">Final BIOS/BMC</div>
+      </div>
+
+      <!-- DQA row -->
+      <div style="display:grid; grid-template-columns:90px repeat(6,1fr); border-top:0.5px solid var(--rule);">
+        <div style="padding:0.7rem 0.75rem; font-size:0.72rem; font-weight:500; color:var(--ink); border-right:0.5px solid var(--rule); background:var(--bg); display:flex; align-items:center;">SE / DQA</div>
+        <div style="padding:0.7rem 0.75rem; border-right:0.5px solid var(--rule);"></div>
+        <div style="padding:0.7rem 0.75rem; border-right:0.5px solid var(--rule);">
+          <div style="background:var(--accent-light); color:var(--accent); border-radius:2px; padding:2px 8px; font-size:0.65rem; font-family:'DM Mono',monospace; display:inline-block;">Test plan / equipment</div>
+        </div>
+        <div style="padding:0.7rem 0.75rem; border-right:0.5px solid var(--rule);">
+          <div style="background:var(--accent-light); color:var(--accent); border-radius:2px; padding:2px 8px; font-size:0.65rem; font-family:'DM Mono',monospace; display:inline-block; margin-bottom:3px;">EMI test</div>
+          <div style="background:var(--accent-light); color:var(--accent); border-radius:2px; padding:2px 8px; font-size:0.65rem; font-family:'DM Mono',monospace; display:inline-block; margin-bottom:3px;">SI test</div>
+          <div style="background:var(--accent-light); color:var(--accent); border-radius:2px; padding:2px 8px; font-size:0.65rem; font-family:'DM Mono',monospace; display:inline-block;">Reliability test</div>
+        </div>
+        <div style="padding:0.7rem 0.75rem; border-right:0.5px solid var(--rule);">
+          <div style="background:var(--accent-light); color:var(--accent); border-radius:2px; padding:2px 8px; font-size:0.65rem; font-family:'DM Mono',monospace; display:inline-block; margin-bottom:3px;">SI test</div>
+          <div style="background:var(--accent-light); color:var(--accent); border-radius:2px; padding:2px 8px; font-size:0.65rem; font-family:'DM Mono',monospace; display:inline-block; margin-bottom:3px;">CE test</div>
+          <div style="background:var(--accent-light); color:var(--accent); border-radius:2px; padding:2px 8px; font-size:0.65rem; font-family:'DM Mono',monospace; display:inline-block;">RA test</div>
+        </div>
+        <div style="padding:0.7rem 0.75rem; border-right:0.5px solid var(--rule);"></div>
+        <div style="padding:0.7rem 0.75rem;"></div>
+      </div>
+
+      <!-- Material row -->
+      <div style="display:grid; grid-template-columns:90px repeat(6,1fr); border-top:0.5px solid var(--rule);">
+        <div style="padding:0.7rem 0.75rem; font-size:0.72rem; font-weight:500; color:var(--ink); border-right:0.5px solid var(--rule); background:var(--bg); display:flex; align-items:center;">Material</div>
+        <div style="padding:0.7rem 0.75rem; border-right:0.5px solid var(--rule);"></div>
+        <div style="padding:0.7rem 0.75rem; border-right:0.5px solid var(--rule);">
+          <div style="background:var(--amber-light); color:var(--amber); border-radius:2px; padding:2px 8px; font-size:0.65rem; font-family:'DM Mono',monospace; display:inline-block; margin-bottom:3px;">Pilot-run material</div>
+          <div style="background:var(--amber-light); color:var(--amber); border-radius:2px; padding:2px 8px; font-size:0.65rem; font-family:'DM Mono',monospace; display:inline-block;">PCB order</div>
+        </div>
+        <div style="padding:0.7rem 0.75rem; border-right:0.5px solid var(--rule);"></div>
+        <div style="padding:0.7rem 0.75rem; border-right:0.5px solid var(--rule);">
+          <div style="background:var(--amber-light); color:var(--amber); border-radius:2px; padding:2px 8px; font-size:0.65rem; font-family:'DM Mono',monospace; display:inline-block; margin-bottom:3px;">Long lead time material</div>
+          <div style="background:var(--amber-light); color:var(--amber); border-radius:2px; padding:2px 8px; font-size:0.65rem; font-family:'DM Mono',monospace; display:inline-block;">PCB (DVT)</div>
+        </div>
+        <div style="padding:0.7rem 0.75rem; border-right:0.5px solid var(--rule);"></div>
+        <div style="padding:0.7rem 0.75rem;"></div>
+      </div>
+
+      <!-- MFG row -->
+      <div style="display:grid; grid-template-columns:90px repeat(6,1fr); border-top:0.5px solid var(--rule);">
+        <div style="padding:0.7rem 0.75rem; font-size:0.72rem; font-weight:500; color:var(--ink); border-right:0.5px solid var(--rule); background:var(--bg); display:flex; align-items:center;">MFG</div>
+        <div style="padding:0.7rem 0.75rem; border-right:0.5px solid var(--rule);"></div>
+        <div style="padding:0.7rem 0.75rem; border-right:0.5px solid var(--rule);"></div>
+        <div style="padding:0.7rem 0.75rem; border-right:0.5px solid var(--rule);">
+          <div style="background:#E8EFF7; color:#1D4E89; border-radius:2px; padding:2px 8px; font-size:0.65rem; font-family:'DM Mono',monospace; display:inline-block; margin-bottom:3px;">DFM</div>
+          <div style="background:#E8EFF7; color:#1D4E89; border-radius:2px; padding:2px 8px; font-size:0.65rem; font-family:'DM Mono',monospace; display:inline-block; margin-bottom:3px;">PCBA</div>
+          <div style="background:#E8EFF7; color:#1D4E89; border-radius:2px; padding:2px 8px; font-size:0.65rem; font-family:'DM Mono',monospace; display:inline-block;">EVT P/R review</div>
+        </div>
+        <div style="padding:0.7rem 0.75rem; border-right:0.5px solid var(--rule);">
+          <div style="background:#E8EFF7; color:#1D4E89; border-radius:2px; padding:2px 8px; font-size:0.65rem; font-family:'DM Mono',monospace; display:inline-block; margin-bottom:3px;">PCBA</div>
+          <div style="background:#E8EFF7; color:#1D4E89; border-radius:2px; padding:2px 8px; font-size:0.65rem; font-family:'DM Mono',monospace; display:inline-block; margin-bottom:3px;">DVT P/R review</div>
+          <div style="background:#E8EFF7; color:#1D4E89; border-radius:2px; padding:2px 8px; font-size:0.65rem; font-family:'DM Mono',monospace; display:inline-block;">SYS test program</div>
+        </div>
+        <div style="padding:0.7rem 0.75rem; border-right:0.5px solid var(--rule);">
+          <div style="background:#E8EFF7; color:#1D4E89; border-radius:2px; padding:2px 8px; font-size:0.65rem; font-family:'DM Mono',monospace; display:inline-block;">PVT P/R report</div>
+        </div>
+        <div style="padding:0.7rem 0.75rem; font-size:0.65rem; color:var(--ink-3);">Ongoing production</div>
+      </div>
+
+      <!-- PM row (highlighted) -->
+      <div style="display:grid; grid-template-columns:90px repeat(6,1fr); border-top:0.5px solid var(--rule); background:var(--accent-light);">
+        <div style="padding:0.7rem 0.75rem; font-size:0.72rem; font-weight:500; color:var(--accent); border-right:0.5px solid var(--rule); background:rgba(29,78,137,0.08); display:flex; align-items:center;">PM (me)</div>
+        <div style="padding:0.7rem 0.75rem; border-right:0.5px solid rgba(29,78,137,0.15);">
+          <div style="background:var(--accent); color:#fff; border-radius:2px; padding:2px 8px; font-size:0.65rem; font-family:'DM Mono',monospace; display:inline-block; margin-bottom:3px;">Kickoff meeting</div>
+          <div style="background:var(--accent); color:#fff; border-radius:2px; padding:2px 8px; font-size:0.65rem; font-family:'DM Mono',monospace; display:inline-block; margin-bottom:3px;">Sample plan</div>
+          <div style="background:var(--accent); color:#fff; border-radius:2px; padding:2px 8px; font-size:0.65rem; font-family:'DM Mono',monospace; display:inline-block;">Budget / ROI</div>
+        </div>
+        <div style="padding:0.7rem 0.75rem; border-right:0.5px solid rgba(29,78,137,0.15);">
+          <div style="background:var(--accent); color:#fff; border-radius:2px; padding:2px 8px; font-size:0.65rem; font-family:'DM Mono',monospace; display:inline-block; margin-bottom:3px;">Pre-BOM cost review</div>
+          <div style="background:var(--accent); color:#fff; border-radius:2px; padding:2px 8px; font-size:0.65rem; font-family:'DM Mono',monospace; display:inline-block; margin-bottom:3px;">Schedule tracking</div>
+          <div style="background:var(--accent); color:#fff; border-radius:2px; padding:2px 8px; font-size:0.65rem; font-family:'DM Mono',monospace; display:inline-block;">Meeting minutes</div>
+        </div>
+        <div style="padding:0.7rem 0.75rem; border-right:0.5px solid rgba(29,78,137,0.15);">
+          <div style="background:var(--accent); color:#fff; border-radius:2px; padding:2px 8px; font-size:0.65rem; font-family:'DM Mono',monospace; display:inline-block; margin-bottom:3px;">EVT cost review</div>
+          <div style="background:var(--accent); color:#fff; border-radius:2px; padding:2px 8px; font-size:0.65rem; font-family:'DM Mono',monospace; display:inline-block; margin-bottom:3px;">Bug tracking</div>
+          <div style="background:var(--accent); color:#fff; border-radius:2px; padding:2px 8px; font-size:0.65rem; font-family:'DM Mono',monospace; display:inline-block;">P3 exit meeting</div>
+        </div>
+        <div style="padding:0.7rem 0.75rem; border-right:0.5px solid rgba(29,78,137,0.15);">
+          <div style="background:var(--accent); color:#fff; border-radius:2px; padding:2px 8px; font-size:0.65rem; font-family:'DM Mono',monospace; display:inline-block; margin-bottom:3px;">DVT cost review</div>
+          <div style="background:var(--accent); color:#fff; border-radius:2px; padding:2px 8px; font-size:0.65rem; font-family:'DM Mono',monospace; display:inline-block; margin-bottom:3px;">RFQ pricing</div>
+          <div style="background:var(--accent); color:#fff; border-radius:2px; padding:2px 8px; font-size:0.65rem; font-family:'DM Mono',monospace; display:inline-block;">Design Release (DR)</div>
+        </div>
+        <div style="padding:0.7rem 0.75rem; border-right:0.5px solid rgba(29,78,137,0.15);">
+          <div style="background:var(--accent); color:#fff; border-radius:2px; padding:2px 8px; font-size:0.65rem; font-family:'DM Mono',monospace; display:inline-block; margin-bottom:3px;">PVT coordination</div>
+          <div style="background:var(--accent); color:#fff; border-radius:2px; padding:2px 8px; font-size:0.65rem; font-family:'DM Mono',monospace; display:inline-block;">ERP/PLM inventory</div>
+        </div>
+        <div style="padding:0.7rem 0.75rem;">
+          <div style="background:var(--accent); color:#fff; border-radius:2px; padding:2px 8px; font-size:0.65rem; font-family:'DM Mono',monospace; display:inline-block; margin-bottom:3px;">Delivery tracking</div>
+          <div style="background:var(--accent); color:#fff; border-radius:2px; padding:2px 8px; font-size:0.65rem; font-family:'DM Mono',monospace; display:inline-block;">EOL planning</div>
+        </div>
+      </div>
+
+    </div>
+    </div>
+  </div>
+
+  <!-- ── FLOW DIAGRAM: P-Flow milestone view ── -->
+  <div class="fade fade-2" style="margin-bottom:2.5rem;">
+    <p class="col-label" style="margin-bottom:1rem;">P-Flow: milestone gates and key deliverables</p>
+    <!-- Timeline bar -->
+    <div style="position:relative; padding:1.5rem 0 0.5rem;">
+      <!-- horizontal line -->
+      <div style="position:absolute; top:2.35rem; left:60px; right:0; height:2px; background:var(--ink); border-radius:1px;"></div>
+      <!-- arrowhead right -->
+      <div style="position:absolute; top:2.1rem; right:0; width:0; height:0; border-top:5px solid transparent; border-bottom:5px solid transparent; border-left:10px solid var(--ink);"></div>
+
+      <!-- phases row -->
+      <div style="display:grid; grid-template-columns:60px repeat(6,1fr); gap:0; position:relative; z-index:1;">
+        <div></div>
+        <!-- P1 -->
+        <div style="display:flex; flex-direction:column; align-items:center; gap:0.4rem;">
+          <div style="width:36px; height:36px; border-radius:50%; background:var(--accent); display:flex; align-items:center; justify-content:center; font-family:'DM Mono',monospace; font-size:0.65rem; color:#fff; font-weight:400;">P1</div>
+          <p style="font-size:0.68rem; font-weight:500; color:var(--ink); text-align:center; line-height:1.3;">Plan Phase</p>
+          <div style="width:10px; height:10px; background:var(--amber); transform:rotate(45deg); margin-top:0.2rem;"></div>
+          <p style="font-size:0.6rem; color:var(--amber); font-family:'DM Mono',monospace; text-transform:uppercase; letter-spacing:0.06em;">Kickoff</p>
+        </div>
+        <!-- P2 -->
+        <div style="display:flex; flex-direction:column; align-items:center; gap:0.4rem;">
+          <div style="width:36px; height:36px; border-radius:50%; background:var(--accent); display:flex; align-items:center; justify-content:center; font-family:'DM Mono',monospace; font-size:0.65rem; color:#fff;">P2</div>
+          <p style="font-size:0.68rem; font-weight:500; color:var(--ink); text-align:center; line-height:1.3;">Design Phase</p>
+          <div style="width:10px; height:10px; background:var(--amber); transform:rotate(45deg); margin-top:0.2rem;"></div>
+          <p style="font-size:0.6rem; color:var(--amber); font-family:'DM Mono',monospace; text-transform:uppercase; letter-spacing:0.06em;">P2 exit</p>
+        </div>
+        <!-- P3 -->
+        <div style="display:flex; flex-direction:column; align-items:center; gap:0.4rem;">
+          <div style="width:36px; height:36px; border-radius:50%; background:var(--accent); display:flex; align-items:center; justify-content:center; font-family:'DM Mono',monospace; font-size:0.65rem; color:#fff;">P3</div>
+          <p style="font-size:0.68rem; font-weight:500; color:var(--ink); text-align:center; line-height:1.3;">EVT Phase</p>
+          <div style="width:10px; height:10px; background:var(--amber); transform:rotate(45deg); margin-top:0.2rem;"></div>
+          <p style="font-size:0.6rem; color:var(--amber); font-family:'DM Mono',monospace; text-transform:uppercase; letter-spacing:0.06em;">P3 exit</p>
+        </div>
+        <!-- P4 -->
+        <div style="display:flex; flex-direction:column; align-items:center; gap:0.4rem;">
+          <div style="width:36px; height:36px; border-radius:50%; background:var(--accent); display:flex; align-items:center; justify-content:center; font-family:'DM Mono',monospace; font-size:0.65rem; color:#fff;">P4</div>
+          <p style="font-size:0.68rem; font-weight:500; color:var(--ink); text-align:center; line-height:1.3;">DVT Phase</p>
+          <div style="width:10px; height:10px; background:var(--amber); transform:rotate(45deg); margin-top:0.2rem;"></div>
+          <p style="font-size:0.6rem; color:var(--amber); font-family:'DM Mono',monospace; text-transform:uppercase; letter-spacing:0.06em;">Design Release</p>
+        </div>
+        <!-- P5 -->
+        <div style="display:flex; flex-direction:column; align-items:center; gap:0.4rem;">
+          <div style="width:36px; height:36px; border-radius:50%; background:var(--teal); display:flex; align-items:center; justify-content:center; font-family:'DM Mono',monospace; font-size:0.65rem; color:#fff;">P5</div>
+          <p style="font-size:0.68rem; font-weight:500; color:var(--ink); text-align:center; line-height:1.3;">PVT Phase</p>
+        </div>
+        <!-- MP -->
+        <div style="display:flex; flex-direction:column; align-items:center; gap:0.4rem;">
+          <div style="width:36px; height:36px; border-radius:2px; background:var(--ink); display:flex; align-items:center; justify-content:center; font-family:'DM Mono',monospace; font-size:0.6rem; color:#fff;">MP</div>
+          <p style="font-size:0.68rem; font-weight:500; color:var(--ink); text-align:center; line-height:1.3;">Mass Production</p>
+          <div style="width:10px; height:10px; background:var(--amber); transform:rotate(45deg); margin-top:0.2rem;"></div>
+          <p style="font-size:0.6rem; color:var(--amber); font-family:'DM Mono',monospace; text-transform:uppercase; letter-spacing:0.06em;">EOL meeting</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Deliverables grid -->
+    <div style="display:grid; grid-template-columns:60px repeat(6,1fr); gap:0; margin-top:1.5rem; border:0.5px solid var(--rule); border-radius:2px; overflow:hidden; background:var(--card-bg);">
+      <div style="padding:0.75rem; background:var(--bg); border-right:0.5px solid var(--rule); font-family:'DM Mono',monospace; font-size:0.55rem; color:var(--ink-3); text-transform:uppercase; letter-spacing:0.08em; display:flex; align-items:center;">Key docs</div>
+      <div style="padding:0.75rem; border-right:0.5px solid var(--rule); font-size:0.68rem; color:var(--ink-2); line-height:1.6;">Market analysis, Budget plan (ROI), Project schedule, Sample plan, Document checklist</div>
+      <div style="padding:0.75rem; border-right:0.5px solid var(--rule); font-size:0.68rem; color:var(--ink-2); line-height:1.6;">Engineering spec, Schematics, Pre-BOM, 2D/3D drawing, DFM report, DQA test plans</div>
+      <div style="padding:0.75rem; border-right:0.5px solid var(--rule); font-size:0.68rem; color:var(--ink-2); line-height:1.6;">S/I test report, Compatibility test, Reliability report, MTBF prediction, EMI pre-scan, Mantis bug list</div>
+      <div style="padding:0.75rem; border-right:0.5px solid var(--rule); font-size:0.68rem; color:var(--ink-2); line-height:1.6;">S/I test report, Reliability report, BIOS release, Transfer SOP, Production test plan, DVT P/R, Design release form</div>
+      <div style="padding:0.75rem; border-right:0.5px solid var(--rule); font-size:0.68rem; color:var(--ink-2); line-height:1.6;">PVT P/R report</div>
+      <div style="padding:0.75rem; font-size:0.68rem; color:var(--ink-2); line-height:1.6;">ECR/ECN tracking, EOL plan</div>
+    </div>
+
+    <!-- Legend -->
+    <div style="display:flex; gap:2rem; margin-top:0.75rem; flex-wrap:wrap;">
+      <div style="display:flex; align-items:center; gap:0.5rem; font-size:0.68rem; color:var(--ink-3);">
+        <div style="width:10px; height:10px; background:var(--amber); transform:rotate(45deg);"></div>
+        Gate milestone (PM chairs / signs off)
+      </div>
+      <div style="display:flex; align-items:center; gap:0.5rem; font-size:0.68rem; color:var(--ink-3);">
+        <div style="width:12px; height:12px; border-radius:50%; background:var(--accent);"></div>
+        EVT / DVT / PVT phase node
+      </div>
+      <div style="display:flex; align-items:center; gap:0.5rem; font-size:0.68rem; color:var(--ink-3);">
+        <div style="width:8px; height:8px; background:var(--ink); border-radius:1px;"></div>
+        Mass production
+      </div>
+    </div>
+  </div>
+
+  <div class="lc-legend fade fade-1">
+    <div class="lc-legend-item"><div class="lc-legend-dot" style="background:var(--accent);"></div>PM-owned tasks</div>
+    <div class="lc-legend-item"><div class="lc-legend-dot" style="background:var(--rule);border:1px solid var(--ink-3);"></div>Cross-team deliverables PM tracks</div>
+  </div>
+
+  <div class="lifecycle-wrap fade fade-2">
+    <div class="lifecycle">
+
+      <div class="lc-phase lc-pm">
+        <div class="lc-header">
+          <div class="lc-tag">P1</div>
+          <p class="lc-phase-name">Plan &amp;<br>Kickoff</p>
+        </div>
+        <div class="lc-body">
+          <div class="lc-task"><div class="lc-dot"></div><span>Write project brief &amp; spec sheet</span></div>
+          <div class="lc-task"><div class="lc-dot"></div><span>Form cross-functional project team</span></div>
+          <div class="lc-task"><div class="lc-dot"></div><span>Build budget plan &amp; ROI model</span></div>
+          <div class="lc-task"><div class="lc-dot"></div><span>Create sample plan &amp; SKU matrix</span></div>
+          <div class="lc-task"><div class="lc-dot"></div><span>Define project schedule</span></div>
+          <div class="lc-task"><div class="lc-dot"></div><span>Host kickoff meeting</span></div>
+        </div>
+      </div>
+
+      <div class="lc-phase">
+        <div class="lc-header">
+          <div class="lc-tag" style="background:var(--accent-light);color:var(--accent);">P2</div>
+          <p class="lc-phase-name">Design<br>Phase</p>
+        </div>
+        <div class="lc-body">
+          <div class="lc-task"><div class="lc-dot"></div><span>Review pre-BOM cost vs. budget</span></div>
+          <div class="lc-task"><div class="lc-dot"></div><span>Confirm component lead times</span></div>
+          <div class="lc-task"><div class="lc-dot"></div><span>Track EE, ME, SW design progress</span></div>
+          <div class="lc-task"><div class="lc-dot"></div><span>Issue weekly meeting minutes</span></div>
+          <div class="lc-task"><div class="lc-dot"></div><span>P2 exit meeting. gate decision</span></div>
+        </div>
+      </div>
+
+      <div class="lc-phase lc-pm">
+        <div class="lc-header">
+          <div class="lc-tag">P3 EVT</div>
+          <p class="lc-phase-name">Engineering<br>Validation</p>
+        </div>
+        <div class="lc-body">
+          <div class="lc-task"><div class="lc-dot"></div><span>Control sample materials &amp; pilot run</span></div>
+          <div class="lc-task"><div class="lc-dot"></div><span>Track bug list to resolution</span></div>
+          <div class="lc-task"><div class="lc-dot"></div><span>Cost review: EVT vs. Pre-BOM</span></div>
+          <div class="lc-task"><div class="lc-dot"></div><span>Coordinate DQA test plan</span></div>
+          <div class="lc-task"><div class="lc-dot"></div><span>Prepare product DM &amp; training kit</span></div>
+        </div>
+      </div>
+
+      <div class="lc-phase lc-pm">
+        <div class="lc-header">
+          <div class="lc-tag">P4 DVT</div>
+          <p class="lc-phase-name">Design<br>Verification</p>
+        </div>
+        <div class="lc-body">
+          <div class="lc-task"><div class="lc-dot"></div><span>DVT pilot run &amp; P/R report review</span></div>
+          <div class="lc-task"><div class="lc-dot"></div><span>Cost review: DVT vs. EVT</span></div>
+          <div class="lc-task"><div class="lc-dot"></div><span>Confirm BOM completeness</span></div>
+          <div class="lc-task"><div class="lc-dot"></div><span>RFQ pricing for sales team</span></div>
+          <div class="lc-task"><div class="lc-dot"></div><span>DR (Design Release) meeting. chair &amp; sign-off</span></div>
+          <div class="lc-task"><div class="lc-dot"></div><span>Track CE/FCC safety certification</span></div>
+        </div>
+      </div>
+
+      <div class="lc-phase">
+        <div class="lc-header">
+          <div class="lc-tag" style="background:var(--teal-light);color:var(--teal);">P5 PVT</div>
+          <p class="lc-phase-name">Pilot<br>Verification</p>
+        </div>
+        <div class="lc-body">
+          <div class="lc-task"><div class="lc-dot"></div><span>PVT pilot run coordination</span></div>
+          <div class="lc-task"><div class="lc-dot"></div><span>Resolve remaining engineering issues</span></div>
+          <div class="lc-task"><div class="lc-dot"></div><span>Inventory management via ERP/PLM</span></div>
+          <div class="lc-task"><div class="lc-dot"></div><span>Component EOL risk management</span></div>
+          <div class="lc-task"><div class="lc-dot"></div><span>Confirm substitute parts approval</span></div>
+        </div>
+      </div>
+
+      <div class="lc-phase lc-pm">
+        <div class="lc-header">
+          <div class="lc-tag">MP → EOL</div>
+          <p class="lc-phase-name">Mass<br>Production</p>
+        </div>
+        <div class="lc-body">
+          <div class="lc-task"><div class="lc-dot"></div><span>On-time sample delivery tracking</span></div>
+          <div class="lc-task"><div class="lc-dot"></div><span>Weekly schedule &amp; status reports</span></div>
+          <div class="lc-task"><div class="lc-dot"></div><span>Customer complaint tracking</span></div>
+          <div class="lc-task"><div class="lc-dot"></div><span>EOL planning: Last Buy, inventory clearance</span></div>
+          <div class="lc-task"><div class="lc-dot"></div><span>Archive project documentation</span></div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<hr class="full-rule">
+
+<!-- ══════════════════════════════════
+     ROLE DEEP DIVE
+══════════════════════════════════ -->
+<div class="section">
+  <div class="section-header">
+    <span class="section-num">03</span>
+    <h2 class="section-title">My Role. Phase by Phase</h2>
+  </div>
+
+  <div class="role-grid fade fade-1">
+    <div class="role-card">
+      <p class="role-card-phase">P1. Kickoff &amp; Planning</p>
+      <p class="role-card-title">Project Initiation &amp; Budget Alignment</p>
+      <p class="role-card-desc">Led project kickoff meetings, assembled cross-functional teams (R&amp;D, DQA, manufacturing, logistics, sales), and owned the budget plan including ROI estimation. Created the sample plan and SKU matrix to align all stakeholders on scope and delivery expectations from day one.</p>
+      <div class="tag-row">
+        <span class="tag tag-teal">Budget Planning</span>
+        <span class="tag tag-teal">SKU Matrix</span>
+        <span class="tag tag-teal">Sample Planning</span>
+        <span class="tag tag-blue">MS Project</span>
+      </div>
+    </div>
+    <div class="role-card">
+      <p class="role-card-phase">P2–P3. Design &amp; EVT</p>
+      <p class="role-card-title">Schedule Governance &amp; Cost Tracking</p>
+      <p class="role-card-desc">Maintained weekly schedule tracking and issued structured meeting minutes across design and EVT stages. Ran Pre-BOM and EVT cost reviews, coordinating between EE, ME, SW teams. Managed component lead times of 8+ weeks by maintaining a rolling sample plan that prevented manufacturing blockages.</p>
+      <div class="tag-row">
+        <span class="tag tag-teal">Schedule Management</span>
+        <span class="tag tag-teal">Cost Review</span>
+        <span class="tag tag-blue">Oracle ERP</span>
+        <span class="tag tag-blue">PLM</span>
+      </div>
+    </div>
+    <div class="role-card">
+      <p class="role-card-phase">P4 DVT. Design Release</p>
+      <p class="role-card-title">RFQ Pricing &amp; DR Gate Ownership</p>
+      <p class="role-card-desc">Chaired the Design Release (DR) meeting, the final gate before mass production, coordinating sign-off from GM, R&amp;D, DQA, and manufacturing. Prepared sample pricing via RFQs for the sales team, using DVT cost history to ensure stable profit margins through spec changes and component cost fluctuations.</p>
+      <div class="tag-row">
+        <span class="tag tag-amber">RFQ Pricing</span>
+        <span class="tag tag-amber">Design Release</span>
+        <span class="tag tag-teal">Cross-team Sign-off</span>
+        <span class="tag tag-blue">Cost History Report</span>
+      </div>
+    </div>
+    <div class="role-card">
+      <p class="role-card-phase">P5 PVT → MP</p>
+      <p class="role-card-title">Mass Production &amp; Delivery</p>
+      <p class="role-card-desc">Coordinated PVT pilot runs and transitioned programs into mass production. Managed on-time sample delivery, inventory control via Oracle ERP and PLM, component EOL risks, and substitute parts approval. Tracked customer feedback and quality issues post-DR, escalating to R&amp;D as needed.</p>
+      <div class="tag-row">
+        <span class="tag tag-teal">On-time Delivery</span>
+        <span class="tag tag-teal">EOL Risk Management</span>
+        <span class="tag tag-blue">Oracle ERP</span>
+        <span class="tag tag-blue">PLM</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<hr class="full-rule">
+
+<!-- ══════════════════════════════════
+     MINI CARDS. 3 MODELS
+══════════════════════════════════ -->
+<div class="section" style="padding-top: 3rem;">
+  <div class="section-header">
+    <span class="section-num">04</span>
+    <h2 class="section-title">Three Models, One Board. PM Perspective</h2>
+  </div>
+
+  <div class="mini-grid fade fade-1">
+    <div class="mini-card">
+      <p class="mini-kicker">FortiNDR-3600G · Center Mode</p>
+      <h4 class="mini-name">Centralized Management Hub</h4>
+      <p class="mini-desc">Rack-mount 2U. 12× hot-swap 16TB SAS SED HDD, 2× NVIDIA L4 GPU, 16i RAID controller, 1600W redundant PSU. Manages up to 50 distributed sensors.</p>
+      <hr class="mini-rule">
+      <p class="mini-focus-label">PM Focus</p>
+      <p class="mini-focus-text">Coordinated DIMM population validation (12 of 24 slots), RAID controller config with BBU, and NVIDIA L4 GPU add-on card integration. Managed storage BOM delta vs. 2500G model.</p>
+    </div>
+    <div class="mini-card">
+      <p class="mini-kicker">FortiNDR-2500G · Sensor / Standalone</p>
+      <h4 class="mini-name">High-throughput Traffic Sniffer</h4>
+      <p class="mini-desc">4× 25GbE SFP28 sniffer ports. 4× 7.68TB Samsung NVMe SSD. 8i RAID + BBU. 1200W PSU. 200,000 flows/sec · 340,000 malware classification capacity.</p>
+      <hr class="mini-rule">
+      <p class="mini-focus-label">PM Focus</p>
+      <p class="mini-focus-text">Managed SFP28 transceiver qualification, NVMe SSD vendor approval, and OT security service SKU planning in RFQ documentation. Tracked lead time risk on Samsung NVMe supply.</p>
+    </div>
+    <div class="mini-card">
+      <p class="mini-kicker">FortiNDR Cloud 2540G · Cloud Sensor</p>
+      <h4 class="mini-name">Hybrid Cloud Architecture</h4>
+      <p class="mini-desc">Same motherboard as 2500G. Configured as a cloud-connected sensor feeding Fortinet's SaaS NDR platform. Enables hybrid on-prem + cloud detection for enterprise SOC teams.</p>
+      <hr class="mini-rule">
+      <p class="mini-focus-label">PM Focus</p>
+      <p class="mini-focus-text">Maintained spec delta documentation between 2500G and 2540G. Coordinated SKU differentiation in BOM and ensured sales RFQ materials correctly reflected cloud vs. standalone deployment differences.</p>
+    </div>
+  </div>
+</div>
+
+<hr class="full-rule">
+
+<!-- ══════════════════════════════════
+     CHALLENGE SPOTLIGHT
+══════════════════════════════════ -->
+<div class="section" id="challenge">
+  <div class="section-header">
+    <span class="section-num">05</span>
+    <h2 class="section-title">A Challenge Encountered During NPI</h2>
+  </div>
+
+  <!-- Context band -->
+  <div style="background:var(--card-bg); border:0.5px solid var(--rule); border-radius:2px; overflow:hidden; margin-bottom:1.5rem;" class="fade fade-1">
+    <div style="background:var(--ink); padding:1.25rem 2rem; display:flex; align-items:center; gap:1rem;">
+      <div style="font-family:'DM Mono',monospace; font-size:0.6rem; letter-spacing:0.12em; text-transform:uppercase; color:rgba(245,243,239,0.4); white-space:nowrap;">Challenge</div>
+      <p style="font-family:'Cormorant Garamond',serif; font-size:1.1rem; font-weight:400; color:#F5F3EF; line-height:1.3;">BIOS and BMC EEPROM programming flow during NPI: aligning board-level and system-level manufacturing sequences</p>
+    </div>
+
+    <!-- Two-column context -->
+    <div style="display:grid; grid-template-columns:1fr 1fr; border-top:0.5px solid var(--rule);">
+      <div style="padding:1.75rem 2rem; border-right:0.5px solid var(--rule);">
+        <p class="col-label" style="margin-bottom:0.75rem;">Background</p>
+        <p style="font-size:0.82rem; color:var(--ink-2); line-height:1.75;">Some team members had come from the laptop industry, where firmware configurations are typically finalised early in the design stage. In those products, the flash is soldered directly onto the PCB, programmed on the board side, and rarely changed afterward.</p>
+        <p style="font-size:0.82rem; color:var(--ink-2); line-height:1.75; margin-top:0.75rem;">Server platforms operate differently, and this gap in mental model created a discussion the team needed to resolve before production flows could be finalised.</p>
+      </div>
+      <div style="padding:1.75rem 2rem;">
+        <p class="col-label" style="margin-bottom:0.75rem;">The technical context</p>
+        <div style="display:flex; flex-direction:column; gap:0.75rem;">
+          <div style="background:var(--bg); border-radius:2px; padding:0.85rem 1rem; border-left:2px solid var(--accent);">
+            <p style="font-size:0.72rem; font-weight:500; color:var(--accent); margin-bottom:0.2rem; font-family:'DM Mono',monospace; letter-spacing:0.06em; text-transform:uppercase;">BIOS EEPROM</p>
+            <p style="font-size:0.78rem; color:var(--ink-2); line-height:1.6;">Reads configuration values from EEPROM based on sample code: board ID, PCIe card configuration, and other system settings.</p>
+          </div>
+          <div style="background:var(--bg); border-radius:2px; padding:0.85rem 1rem; border-left:2px solid var(--teal);">
+            <p style="font-size:0.72rem; font-weight:500; color:var(--teal); margin-bottom:0.2rem; font-family:'DM Mono',monospace; letter-spacing:0.06em; text-transform:uppercase;">BMC EEPROM</p>
+            <p style="font-size:0.78rem; color:var(--ink-2); line-height:1.6;">Controls system management parameters: fan table, temperature monitoring thresholds, and fan speed control. These may need adjustment after thermal testing results come in.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Decision diagram -->
+  <div style="background:var(--card-bg); border:0.5px solid var(--rule); border-radius:2px; overflow:hidden; margin-bottom:1.5rem;" class="fade fade-2">
+    <div style="padding:1.5rem 2rem; border-bottom:0.5px solid var(--rule);">
+      <p class="col-label" style="margin-bottom:0;">Two options on the table</p>
+    </div>
+    <div style="display:grid; grid-template-columns:1fr 1fr; gap:0;">
+      <div style="padding:1.75rem 2rem; border-right:0.5px solid var(--rule);">
+        <div style="display:flex; align-items:center; gap:0.75rem; margin-bottom:1rem;">
+          <div style="width:28px; height:28px; border-radius:50%; background:var(--accent-light); display:flex; align-items:center; justify-content:center; font-family:'DM Mono',monospace; font-size:0.65rem; color:var(--accent); flex-shrink:0;">A</div>
+          <p style="font-size:0.88rem; font-weight:500; color:var(--ink); font-family:'Cormorant Garamond',serif;">Program EEPROM at board level</p>
+        </div>
+        <p style="font-size:0.8rem; color:var(--ink-2); line-height:1.75; margin-bottom:1rem;">Program the BMC EEPROM during board-side functional testing, before system assembly.</p>
+        <div style="display:flex; flex-direction:column; gap:0.4rem;">
+          <div style="display:flex; align-items:flex-start; gap:0.5rem; font-size:0.75rem; color:var(--teal);">
+            <span style="font-weight:500; flex-shrink:0;">Pro</span>
+            <span style="color:var(--ink-2);">Simpler manufacturing flow for the board team</span>
+          </div>
+          <div style="display:flex; align-items:flex-start; gap:0.5rem; font-size:0.75rem; color:var(--amber);">
+            <span style="font-weight:500; flex-shrink:0;">Con</span>
+            <span style="color:var(--ink-2);">May require reprogramming if thermal parameters change after thermal validation</span>
+          </div>
+        </div>
+      </div>
+      <div style="padding:1.75rem 2rem;">
+        <div style="display:flex; align-items:center; gap:0.75rem; margin-bottom:1rem;">
+          <div style="width:28px; height:28px; border-radius:50%; background:var(--teal-light); display:flex; align-items:center; justify-content:center; font-family:'DM Mono',monospace; font-size:0.65rem; color:var(--teal); flex-shrink:0;">B</div>
+          <p style="font-size:0.88rem; font-weight:500; color:var(--ink); font-family:'Cormorant Garamond',serif;">Program EEPROM at system level</p>
+        </div>
+        <p style="font-size:0.8rem; color:var(--ink-2); line-height:1.75; margin-bottom:1rem;">Program the finalised BMC EEPROM parameters during system-level production testing, after full assembly.</p>
+        <div style="display:flex; flex-direction:column; gap:0.4rem;">
+          <div style="display:flex; align-items:flex-start; gap:0.5rem; font-size:0.75rem; color:var(--teal);">
+            <span style="font-weight:500; flex-shrink:0;">Pro</span>
+            <span style="color:var(--ink-2);">Final thermal configuration applied only after validation is complete</span>
+          </div>
+          <div style="display:flex; align-items:flex-start; gap:0.5rem; font-size:0.75rem; color:var(--amber);">
+            <span style="font-weight:500; flex-shrink:0;">Con</span>
+            <span style="color:var(--ink-2);">Slightly more complex system-level test flow</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Resolution -->
+  <div style="background:var(--ink); border-radius:2px; padding:2rem 2.5rem;" class="fade fade-3">
+    <p class="col-label" style="color:rgba(245,243,239,0.35); margin-bottom:1rem;">My resolution</p>
+    <div style="display:grid; grid-template-columns:auto 1fr; gap:1.5rem; align-items:start;">
+      <div style="width:36px; height:36px; border-radius:50%; background:var(--accent); display:flex; align-items:center; justify-content:center; font-family:'DM Mono',monospace; font-size:0.65rem; color:#fff; flex-shrink:0; margin-top:0.2rem;">A+B</div>
+      <div>
+        <p style="font-family:'Cormorant Garamond',serif; font-size:1.05rem; color:#F5F3EF; line-height:1.6; margin-bottom:0.75rem; font-style:italic;">A hybrid approach: board-level testing uses default values for basic hardware verification, while system-level production testing applies the finalised BMC EEPROM parameters validated through thermal testing.</p>
+        <p style="font-size:0.8rem; color:rgba(245,243,239,0.55); line-height:1.7;">This allowed the board team to complete functional verification earlier in the schedule, without waiting on thermal test results. The system team could then apply the correct fan table and temperature thresholds as a final step during production. It preserved schedule efficiency at both stages while ensuring the shipped configuration was thermally validated.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<hr class="full-rule">
+
+<!-- ══════════════════════════════════
+     EDUCATION
+══════════════════════════════════ -->
+<div class="section" style="padding-top: 3.5rem; padding-bottom: 4rem;">
+  <div class="section-header">
+    <span class="section-num">06</span>
+    <h2 class="section-title">Education</h2>
+  </div>
+  <div class="edu-grid fade fade-1">
+    <div class="edu-card">
+      <img
+        class="edu-logo"
+        src="https://static.wixstatic.com/media/f81301_cb47e8d614184ca899317b7302ee7da5~mv2.png/v1/fill/w_603,h_251,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/uniamsterdam_edited.png"
+        alt="University of Amsterdam"
+        onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
+      >
+      <div class="edu-logo-placeholder" style="display:none;"><span>UvA</span></div>
+      <div>
+        <p class="edu-period">Sep 2025 – Jun 2026 · Amsterdam, NL</p>
+        <p class="edu-school">University of Amsterdam</p>
+        <p class="edu-degree">MSc Business Administration<br><span style="font-size:0.75rem;color:var(--ink-3);">Specialisation: Digital Marketing</span></p>
+        <p class="edu-note">Thesis: How UI information density and numerical precision influence perceived AI competence and continuous engagement intent.</p>
+      </div>
+    </div>
+    <div class="edu-card">
+      <img
+        class="edu-logo"
+        src="https://static.wixstatic.com/media/f81301_16b9d76445aa4bc4b7e0b33c09140cea~mv2.png/v1/fill/w_425,h_222,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/f81301_16b9d76445aa4bc4b7e0b33c09140cea~mv2.png"
+        alt="National Taiwan University"
+        onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
+      >
+      <div class="edu-logo-placeholder" style="display:none;"><span>NTU</span></div>
+      <div>
+        <p class="edu-period">Sep 2018 – Jan 2023 · Taipei, Taiwan</p>
+        <p class="edu-school">National Taiwan University</p>
+        <p class="edu-degree">B.A. Bio-Industry Communication<br><span style="font-size:0.75rem;color:var(--ink-3);">Minor: Social Work</span></p>
+        <p class="edu-note">Summer programme at University of Pennsylvania (UPenn), earning 8 ECTS credits. Human-centred approach to stakeholder communication.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <span>© 2025 Yu Chen (Claire) Lu · Amsterda
